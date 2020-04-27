@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <title>Covid-19 Confirmed headerCellCumulativeCases</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="src/scripts.js"></script>
+    <script type="text/javascript" src="src/gCharts.js"></script>
+    <script>
+        fetch('https://api.covid19api.com/countries', {cache: "default"})
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                createOptions(data);
+            });
+    </script>
+</head>
+<body>
+    <div id="header">
+        <h1>Confirmed Covid Cases by Country</h1>
+        <h4 id="as-of"></h4>
+        <h3>Select a country</h3>
+        <form method="GET">
+            <div>
+                <select name="allCountries" id="allCountries" onchange="getCovidByCountry()">
+                    <option></option>
+                </select>
+            </div>
+        </form>
+        <div id="chart-headline"></div>
+    </div>
+    <div class="chart-container">
+        <div class="chart" id="data-table"></div>
+        <div class="chart" id="chart_div" style="width: 900px; height: 500px"></div>
+    </div>
+</body>
+<script>
+    document.getElementById("as-of").innerHTML = "As of " + new Date().toLocaleDateString();
+</script>
+</html>
