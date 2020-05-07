@@ -15,6 +15,7 @@
                 return response.json();
             })
             .then((data) => {
+                data.sort(sortByCountry("Country"));
                 createOptions(data);
             });
     </script>

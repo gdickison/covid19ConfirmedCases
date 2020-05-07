@@ -1,3 +1,9 @@
+const sortByCountry = (property) => {
+    return function (x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    };
+};
+
 const createOptions = (data) => {
     const allCountries = document.getElementById("allCountries")
     for(var i = 0; i < data.length; i++){
